@@ -53,6 +53,7 @@ import org.apache.maven.plugins.javadoc.options.io.xpp3.JavadocOptionsXpp3Writer
 import org.apache.maven.plugins.javadoc.resolver.JavadocBundle;
 import org.apache.maven.plugins.javadoc.resolver.ResourceResolver;
 import org.apache.maven.plugins.javadoc.resolver.SourceResolverConfig;
+import org.apache.maven.project.DefaultProjectBuildingRequest;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.ProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
@@ -3507,7 +3508,7 @@ public abstract class AbstractJavadocMojo
             coordinate.setGroupId( javadocArtifact.getGroupId() );
             coordinate.setArtifactId( javadocArtifact.getArtifactId() );
             coordinate.setVersion( javadocArtifact.getVersion() );
-
+            
             Iterable<ArtifactResult> deps =
                 dependencyResolver.resolveDependencies( session.getProjectBuildingRequest(), coordinate,
                                                         ScopeFilter.including( "compile", "provided" ) );
@@ -3543,7 +3544,11 @@ public abstract class AbstractJavadocMojo
         coordinate.setArtifactId( javadocArtifact.getArtifactId() );
         coordinate.setVersion( javadocArtifact.getVersion() );
 
-        return artifactResolver.resolveArtifact( session.getProjectBuildingRequest(), coordinate ).getArtifact();
+        DefaultProjectBuildingRequest buildingRequest =
+            new DefaultProjectBuildingRequest( session.getProjectBuildingRequest() );
+        buildingRequest.setRemoteRepositories( project.getRemoteArtifactRepositories() );
+        
+        return artifactResolver.resolveArtifact( buildingRequest, coordinate ).getArtifact();
     }
 
     /**
