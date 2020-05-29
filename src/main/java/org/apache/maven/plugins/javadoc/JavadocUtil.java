@@ -258,22 +258,26 @@ public class JavadocUtil
             path = path.replace( '\\', '/' );
             if ( path.contains( "\'" ) )
             {
+                StringBuilder pathBuilder = new StringBuilder();
+                pathBuilder.append('\'');
                 String[] split = path.split( "\'" );
-                path = "";
 
                 for ( int i = 0; i < split.length; i++ )
                 {
                     if ( i != split.length - 1 )
                     {
-                        path = path + split[i] + "\\'";
+                        pathBuilder.append(split[i]).append("\\'");
                     }
                     else
                     {
-                        path = path + split[i];
+                        pathBuilder.append(path).append(split[i]);
                     }
                 }
+                pathBuilder.append('\'');
+                path = pathBuilder.toString();
+            } else {
+                path = "'" + path + "'";
             }
-            path = "'" + path + "'";
         }
 
         return path;
@@ -471,10 +475,7 @@ public class JavadocUtil
         List<String> files = new ArrayList<>();
         if ( fileList.length != 0 )
         {
-            for ( String includedFile : getIncludedFiles( sourceDirectory, fileList, excludePackages ) )
-            {
-                files.add( includedFile );
-            }
+            files.addAll(getIncludedFiles(sourceDirectory, fileList, excludePackages));
         }
 
         return files;
@@ -517,7 +518,7 @@ public class JavadocUtil
         {
             StringBuilder msg = new StringBuilder( "Exit code: " + exitCode + " - " + err.getOutput() );
             msg.append( '\n' );
-            msg.append( "Command line was:" + CommandLineUtils.toString( cmd.getCommandline() ) );
+            msg.append("Command line was:").append(CommandLineUtils.toString(cmd.getCommandline()));
             throw new CommandLineException( msg.toString() );
         }
 
@@ -1826,7 +1827,7 @@ public class JavadocUtil
         builder.setUserAgent( "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" );
 
         // Some server reject requests that do not have an Accept header
-        builder.setDefaultHeaders( Arrays.asList( new BasicHeader( HttpHeaders.ACCEPT, "*/*" ) ) );
+        builder.setDefaultHeaders(Collections.singletonList(new BasicHeader(HttpHeaders.ACCEPT, "*/*")));
 
         if ( settings != null && settings.getActiveProxy() != null )
         {
