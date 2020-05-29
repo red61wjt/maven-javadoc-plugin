@@ -256,24 +256,24 @@ public class JavadocUtil
         if ( StringUtils.isNotEmpty( path ) )
         {
             path = path.replace( '\\', '/' );
-            if ( path.contains("'") )
+            if ( path.contains( "'" ) )
             {
                 StringBuilder pathBuilder = new StringBuilder();
-                pathBuilder.append('\'');
-                String[] split = path.split("'");
+                pathBuilder.append( '\'' );
+                String[] split = path.split( "'" );
 
                 for ( int i = 0; i < split.length; i++ )
                 {
                     if ( i != split.length - 1 )
                     {
-                        pathBuilder.append(split[i]).append("\\'");
+                        pathBuilder.append( split[i] ).append( "\\'" );
                     }
                     else
                     {
-                        pathBuilder.append(split[i]);
+                        pathBuilder.append( split[i] );
                     }
                 }
-                pathBuilder.append('\'');
+                pathBuilder.append( '\'' );
                 path = pathBuilder.toString();
             } else {
                 path = "'" + path + "'";
@@ -475,7 +475,7 @@ public class JavadocUtil
         List<String> files = new ArrayList<>();
         if ( fileList.length != 0 )
         {
-            files.addAll(getIncludedFiles(sourceDirectory, fileList, excludePackages));
+            files.addAll( getIncludedFiles( sourceDirectory, fileList, excludePackages ) );
         }
 
         return files;
@@ -518,7 +518,7 @@ public class JavadocUtil
         {
             StringBuilder msg = new StringBuilder( "Exit code: " + exitCode + " - " + err.getOutput() );
             msg.append( '\n' );
-            msg.append("Command line was:").append(CommandLineUtils.toString(cmd.getCommandline()));
+            msg.append( "Command line was:" ).append( CommandLineUtils.toString( cmd.getCommandline() ) );
             throw new CommandLineException( msg.toString() );
         }
 
@@ -534,7 +534,7 @@ public class JavadocUtil
         throw new IllegalArgumentException( "No output found from the command line 'javadoc -J-version'" );
     }
 
-    private static final Pattern EXTRACT_JAVADOC_VERSION_PATTERN = Pattern.compile( "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*" );
+    private static final Pattern EXTRACT_JAVADOC_VERSION_PATTERN = Pattern.compile(  "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*"  );
 
     /**
      * Parse the output for 'javadoc -J-version' and return the javadoc version recognized. <br>
@@ -596,15 +596,15 @@ public class JavadocUtil
         return matcher.group( 1 );
     }
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_0 = Pattern.compile( "^\\s*(\\d+)\\s*?\\s*$");
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_0 = Pattern.compile(  "^\\s*(\\d+)\\s*?\\s*$" );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_1 = Pattern.compile( "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_1 = Pattern.compile(  "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_2 = Pattern.compile( "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_2 = Pattern.compile(  "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_3 = Pattern.compile( "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_3 = Pattern.compile(  "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_4 = Pattern.compile( "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_4 = Pattern.compile(  "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
     /**
      * Parse a memory string which be used in the JVM arguments <code>-Xms</code> or <code>-Xmx</code>. <br>
@@ -1158,7 +1158,7 @@ public class JavadocUtil
         {
             if ( log != null && log.isErrorEnabled() )
             {
-                log.error("Cannot find Maven application directory. Either specify 'maven.home' system property, or "
+                log.error( "Cannot find Maven application directory. Either specify 'maven.home' system property, or "
                     + "M2_HOME environment variable." );
             }
         }
@@ -1236,7 +1236,7 @@ public class JavadocUtil
         {
             if ( log != null && log.isErrorEnabled() )
             {
-                log.error("Cannot find Java application directory. Either specify 'java.home' system property, or "
+                log.error( "Cannot find Java application directory. Either specify 'java.home' system property, or "
                     + "JAVA_HOME environment variable." );
             }
         }
@@ -1827,7 +1827,7 @@ public class JavadocUtil
         builder.setUserAgent( "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" );
 
         // Some server reject requests that do not have an Accept header
-        builder.setDefaultHeaders(Collections.singletonList(new BasicHeader(HttpHeaders.ACCEPT, "*/*")));
+        builder.setDefaultHeaders( Collections.singletonList( new BasicHeader( HttpHeaders.ACCEPT, "*/*" ) ) );
 
         if ( settings != null && settings.getActiveProxy() != null )
         {

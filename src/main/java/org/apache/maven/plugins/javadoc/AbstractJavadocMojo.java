@@ -2253,9 +2253,9 @@ public abstract class AbstractJavadocMojo
             for ( Path sourcePath : sourcePaths )
             {
                 File sourceDirectory = sourcePath.toFile();
-                List<String> files = new ArrayList<>(JavadocUtil.getFilesFromSource(sourceDirectory,
+                List<String> files = new ArrayList<>( JavadocUtil.getFilesFromSource( sourceDirectory,
                         sourceFileIncludes, sourceFileExcludes,
-                        excludedPackages));
+                        excludedPackages ) );
 
                 if ( source != null && JavaVersion.parse( source ).isBefore( "9" )
                     && files.remove( "module-info.java" ) )
@@ -6067,9 +6067,9 @@ public abstract class AbstractJavadocMojo
             }
         }
         URL resourceURL = null;
-        try (URLClassLoader javadocClassLoader = new URLClassLoader(urls.toArray(new URL[urls.size()]), null)) {
-            resourceURL = javadocClassLoader.getResource(resource);
-        } catch (IOException e) {
+        try ( URLClassLoader javadocClassLoader = new URLClassLoader( urls.toArray( new URL[urls.size()] ), null ) ) {
+            resourceURL = javadocClassLoader.getResource( resource );
+        } catch ( IOException e ) {
             // ignore
         }
         return resourceURL;

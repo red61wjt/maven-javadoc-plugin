@@ -1781,7 +1781,7 @@ public abstract class AbstractFixJavadocMojo
         }
     }
 
-    private static final Pattern REPLACE_LINK_TAGS_PATTERN = Pattern.compile("\\{@link\\s");
+    private static final Pattern REPLACE_LINK_TAGS_PATTERN = Pattern.compile( "\\{@link\\s" );
 
     static String replaceLinkTags( String comment, JavaAnnotatedElement entity )
     {
