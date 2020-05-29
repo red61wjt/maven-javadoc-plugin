@@ -1796,11 +1796,13 @@ public abstract class AbstractFixJavadocMojo
         }
     }
 
+    private static final Pattern REPLACE_LINK_TAGS_PATTERN = Pattern.compile("\\{@link\\s");
+
     static String replaceLinkTags( String comment, JavaAnnotatedElement entity )
     {
         StringBuilder resolvedComment = new StringBuilder();
         // scan comment for {@link someClassName} and try to resolve this
-        Matcher linktagMatcher = Pattern.compile( "\\{@link\\s" ).matcher( comment );
+        Matcher linktagMatcher = REPLACE_LINK_TAGS_PATTERN.matcher( comment );
         int startIndex = 0;
         while ( linktagMatcher.find() )
         {

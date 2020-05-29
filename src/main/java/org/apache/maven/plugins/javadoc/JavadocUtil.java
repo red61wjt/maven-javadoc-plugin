@@ -258,7 +258,7 @@ public class JavadocUtil
             path = path.replace( '\\', '/' );
             if ( path.contains( "\'" ) )
             {
-                String split[] = path.split( "\'" );
+                String[] split = path.split( "\'" );
                 path = "";
 
                 for ( int i = 0; i < split.length; i++ )
@@ -533,6 +533,8 @@ public class JavadocUtil
         throw new IllegalArgumentException( "No output found from the command line 'javadoc -J-version'" );
     }
 
+    private static final Pattern EXTRACT_JAVADOC_VERSION_PATTERN = Pattern.compile( "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*" );
+
     /**
      * Parse the output for 'javadoc -J-version' and return the javadoc version recognized. <br>
      * Here are some output for 'javadoc -J-version' depending the JDK used:
@@ -581,7 +583,7 @@ public class JavadocUtil
             throw new IllegalArgumentException( "The output could not be null." );
         }
 
-        Pattern pattern = Pattern.compile( "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*" );
+        Pattern pattern = EXTRACT_JAVADOC_VERSION_PATTERN;
 
         Matcher matcher = pattern.matcher( output );
         if ( !matcher.matches() )
@@ -592,6 +594,16 @@ public class JavadocUtil
 
         return matcher.group( 1 );
     }
+
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_0 = Pattern.compile( "^\\s*(\\d+)\\s*?\\s*$");
+
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_1 = Pattern.compile( "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_2 = Pattern.compile( "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_3 = Pattern.compile( "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_4 = Pattern.compile( "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE);
 
     /**
      * Parse a memory string which be used in the JVM arguments <code>-Xms</code> or <code>-Xmx</code>. <br>
@@ -629,35 +641,34 @@ public class JavadocUtil
             throw new IllegalArgumentException( "The memory could not be null." );
         }
 
-        Pattern p = Pattern.compile( "^\\s*(\\d+)\\s*?\\s*$" );
+        Pattern p = PARSE_JAVADOC_MEMORY_PATTERN_0;
         Matcher m = p.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "m";
         }
-
-        p = Pattern.compile( "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+        p = PARSE_JAVADOC_MEMORY_PATTERN_1;
         m = p.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "k";
         }
 
-        p = Pattern.compile( "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+        p = PARSE_JAVADOC_MEMORY_PATTERN_2;
         m = p.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "m";
         }
 
-        p = Pattern.compile( "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+        p = PARSE_JAVADOC_MEMORY_PATTERN_3;
         m = p.matcher( memory );
         if ( m.matches() )
         {
             return ( Integer.parseInt( m.group( 1 ) ) * 1024 ) + "m";
         }
 
-        p = Pattern.compile( "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+        p = PARSE_JAVADOC_MEMORY_PATTERN_4;
         m = p.matcher( memory );
         if ( m.matches() )
         {
