@@ -270,7 +270,7 @@ public class JavadocUtil
                     }
                     else
                     {
-                        pathBuilder.append(path).append(split[i]);
+                        pathBuilder.append(split[i]);
                     }
                 }
                 pathBuilder.append('\'');
