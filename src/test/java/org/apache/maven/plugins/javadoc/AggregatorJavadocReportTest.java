@@ -173,19 +173,12 @@ public class AggregatorJavadocReportTest
     {
         String strTmp;
         StringBuilder str = new StringBuilder( (int) file.length() );
-        BufferedReader in = new BufferedReader( new FileReader( file ) );
 
-        try
-        {
-            while ( ( strTmp = in.readLine() ) != null )
-            {
+        try (BufferedReader in = new BufferedReader(new FileReader(file))) {
+            while ( ( strTmp = in.readLine() ) != null ) {
                 str.append( LINE_SEPARATOR );
                 str.append( strTmp );
             }
-        }
-        finally
-        {
-            in.close();
         }
 
         return str.toString();
