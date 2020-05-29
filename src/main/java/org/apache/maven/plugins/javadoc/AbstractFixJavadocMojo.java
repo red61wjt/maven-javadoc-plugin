@@ -808,20 +808,6 @@ public abstract class AbstractFixJavadocMojo
                 switch ( code )
                 {
                     case 7011:
-                        list = clirrNewMethods.get( split[2].trim() );
-                        if ( list == null )
-                        {
-                            list = new ArrayList<>();
-                        }
-                        splits2 = StringUtils.split( split[3].trim(), "'" );
-                        if ( splits2.length != 3 )
-                        {
-                            continue;
-                        }
-                        list.add( splits2[1].trim() );
-                        clirrNewMethods.put( split[2].trim(), list );
-                        break;
-
                     case 7012:
                         list = clirrNewMethods.get( split[2].trim() );
                         if ( list == null )
@@ -836,7 +822,6 @@ public abstract class AbstractFixJavadocMojo
                         list.add( splits2[1].trim() );
                         clirrNewMethods.put( split[2].trim(), list );
                         break;
-
                     case 8000:
                         clirrNewClasses.add( split[2].trim() );
                         break;
