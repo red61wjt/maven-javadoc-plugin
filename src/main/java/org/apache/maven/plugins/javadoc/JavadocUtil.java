@@ -256,11 +256,11 @@ public class JavadocUtil
         if ( StringUtils.isNotEmpty( path ) )
         {
             path = path.replace( '\\', '/' );
-            if ( path.contains( "\'" ) )
+            if ( path.contains("'") )
             {
                 StringBuilder pathBuilder = new StringBuilder();
                 pathBuilder.append('\'');
-                String[] split = path.split( "\'" );
+                String[] split = path.split("'");
 
                 for ( int i = 0; i < split.length; i++ )
                 {
@@ -1158,7 +1158,7 @@ public class JavadocUtil
         {
             if ( log != null && log.isErrorEnabled() )
             {
-                log.error( "Cannot find Maven application directory. Either specify \'maven.home\' system property, or "
+                log.error("Cannot find Maven application directory. Either specify 'maven.home' system property, or "
                     + "M2_HOME environment variable." );
             }
         }
@@ -1236,7 +1236,7 @@ public class JavadocUtil
         {
             if ( log != null && log.isErrorEnabled() )
             {
-                log.error( "Cannot find Java application directory. Either specify \'java.home\' system property, or "
+                log.error("Cannot find Java application directory. Either specify 'java.home' system property, or "
                     + "JAVA_HOME environment variable." );
             }
         }
