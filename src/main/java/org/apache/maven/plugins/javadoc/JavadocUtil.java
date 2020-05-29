@@ -275,7 +275,9 @@ public class JavadocUtil
                 }
                 pathBuilder.append( '\'' );
                 path = pathBuilder.toString();
-            } else {
+            }
+            else
+            {
                 path = "'" + path + "'";
             }
         }
@@ -534,7 +536,8 @@ public class JavadocUtil
         throw new IllegalArgumentException( "No output found from the command line 'javadoc -J-version'" );
     }
 
-    private static final Pattern EXTRACT_JAVADOC_VERSION_PATTERN = Pattern.compile(  "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*"  );
+    private static final Pattern EXTRACT_JAVADOC_VERSION_PATTERN =
+            Pattern.compile(  "(?s).*?[^a-zA-Z](([0-9]+\\.?[0-9]*)(\\.[0-9]+)?).*"  );
 
     /**
      * Parse the output for 'javadoc -J-version' and return the javadoc version recognized. <br>
@@ -596,15 +599,20 @@ public class JavadocUtil
         return matcher.group( 1 );
     }
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_0 = Pattern.compile(  "^\\s*(\\d+)\\s*?\\s*$" );
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_0 =
+            Pattern.compile(  "^\\s*(\\d+)\\s*?\\s*$" );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_1 = Pattern.compile(  "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_1 =
+            Pattern.compile(  "^\\s*(\\d+)\\s*k(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_2 = Pattern.compile(  "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_2 =
+            Pattern.compile(  "^\\s*(\\d+)\\s*m(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_3 = Pattern.compile(  "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_3 =
+            Pattern.compile(  "^\\s*(\\d+)\\s*g(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
-    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_4 = Pattern.compile(  "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE );
+    private static final Pattern PARSE_JAVADOC_MEMORY_PATTERN_4 =
+            Pattern.compile(  "^\\s*(\\d+)\\s*t(b)?\\s*$", Pattern.CASE_INSENSITIVE );
 
     /**
      * Parse a memory string which be used in the JVM arguments <code>-Xms</code> or <code>-Xmx</code>. <br>

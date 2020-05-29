@@ -6067,9 +6067,11 @@ public abstract class AbstractJavadocMojo
             }
         }
         URL resourceURL = null;
-        try ( URLClassLoader javadocClassLoader = new URLClassLoader( urls.toArray( new URL[urls.size()] ), null ) ) {
+        try ( URLClassLoader javadocClassLoader = new URLClassLoader( urls.toArray( new URL[urls.size()] ), null ) )
+        {
             resourceURL = javadocClassLoader.getResource( resource );
-        } catch ( IOException e ) {
+        } catch ( IOException e )
+        {
             // ignore
         }
         return resourceURL;
