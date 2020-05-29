@@ -154,7 +154,7 @@ public class JavadocJarTest
         //check if the javadoc jar file was generated
         File generatedFile = new File( getBasedir(),
                                        "target/test/unit/javadocjar-invalid-destdir/target/javadocjar-invalid-destdir-javadoc.jar" );
-        assertTrue( !FileUtils.fileExists( generatedFile.getAbsolutePath() ) );
+        assertFalse(FileUtils.fileExists(generatedFile.getAbsolutePath()));
     }
 
     public void testContinueIfFailOnErrorIsFalse() throws Exception
