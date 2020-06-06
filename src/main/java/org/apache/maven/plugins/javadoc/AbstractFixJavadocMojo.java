@@ -802,25 +802,15 @@ public abstract class AbstractFixJavadocMojo
                 // 7011 - Method Added
                 // 7012 - Method Added to Interface
                 // 8000 - Class Added
-                List<String> list;
-                String[] splits2;
+
                 // CHECKSTYLE_OFF: MagicNumber
                 switch ( code )
                 {
                     case 7011:
+                        methodAdded( split );
+                        break;
                     case 7012:
-                        list = clirrNewMethods.get( split[2].trim() );
-                        if ( list == null )
-                        {
-                            list = new ArrayList<>();
-                        }
-                        splits2 = StringUtils.split( split[3].trim(), "'" );
-                        if ( splits2.length != 3 )
-                        {
-                            continue;
-                        }
-                        list.add( splits2[1].trim() );
-                        clirrNewMethods.put( split[2].trim(), list );
+                        methodAdded( split );
                         break;
                     case 8000:
                         clirrNewClasses.add( split[2].trim() );
@@ -839,6 +829,23 @@ public abstract class AbstractFixJavadocMojo
         {
             getLog().info( "Clirr found API differences, i.e. new classes/interfaces or methods." );
         }
+    }
+
+    private void methodAdded( String[] split )
+    {
+        String[] splits2;
+        List<String> list = clirrNewMethods.get( split[2].trim() );
+        if ( list == null )
+        {
+            list = new ArrayList<>();
+        }
+        splits2 = StringUtils.split( split[3].trim(), "'" );
+        if ( splits2.length != 3 )
+        {
+            return;
+        }
+        list.add( splits2[1].trim() );
+        clirrNewMethods.put( split[2].trim(), list );
     }
 
     /**
