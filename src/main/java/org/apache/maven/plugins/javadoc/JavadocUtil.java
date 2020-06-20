@@ -650,35 +650,31 @@ public class JavadocUtil
             throw new IllegalArgumentException( "The memory could not be null." );
         }
 
-        Pattern p = PARSE_JAVADOC_MEMORY_PATTERN_0;
-        Matcher m = p.matcher( memory );
+        Matcher m = PARSE_JAVADOC_MEMORY_PATTERN_0.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "m";
         }
-        p = PARSE_JAVADOC_MEMORY_PATTERN_1;
-        m = p.matcher( memory );
+
+        m = PARSE_JAVADOC_MEMORY_PATTERN_1.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "k";
         }
 
-        p = PARSE_JAVADOC_MEMORY_PATTERN_2;
-        m = p.matcher( memory );
+        m = PARSE_JAVADOC_MEMORY_PATTERN_2.matcher( memory );
         if ( m.matches() )
         {
             return m.group( 1 ) + "m";
         }
 
-        p = PARSE_JAVADOC_MEMORY_PATTERN_3;
-        m = p.matcher( memory );
+        m = PARSE_JAVADOC_MEMORY_PATTERN_3.matcher( memory );
         if ( m.matches() )
         {
             return ( Integer.parseInt( m.group( 1 ) ) * 1024 ) + "m";
         }
 
-        p = PARSE_JAVADOC_MEMORY_PATTERN_4;
-        m = p.matcher( memory );
+        m = PARSE_JAVADOC_MEMORY_PATTERN_4.matcher( memory );
         if ( m.matches() )
         {
             return ( Integer.parseInt( m.group( 1 ) ) * 1024 * 1024 ) + "m";
