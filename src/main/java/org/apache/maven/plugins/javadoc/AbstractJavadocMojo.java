@@ -564,7 +564,6 @@ public abstract class AbstractJavadocMojo
      *
      * @see #links
      * @see #javaApiLinks
-     * @see #DEFAULT_JAVA_API_LINKS
      * @since 2.6
      */
     @Parameter( property = "detectJavaApiLink", defaultValue = "true" )
