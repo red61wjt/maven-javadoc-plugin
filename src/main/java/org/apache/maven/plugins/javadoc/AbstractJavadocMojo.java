@@ -6065,14 +6065,23 @@ public abstract class AbstractJavadocMojo
                 getLog().error( "MalformedURLException: " + e.getMessage() );
             }
         }
-        try ( URLClassLoader javadocClassLoader = new URLClassLoader( urls.toArray( new URL[urls.size()] ), null ) )
+
+        URLClassLoader javadocClassLoader = new URLClassLoader( urls.toArray( new URL[urls.size()] ), null );
+        try
         {
             return javadocClassLoader.getResource( resource );
-        } catch ( IOException e )
-        {
-            // ignore
         }
-        return null;
+        finally
+        {
+            try
+            {
+                javadocClassLoader.close();
+            }
+            catch ( IOException ex )
+            {
+                // ignore
+            }
+        }
     }
 
     /**
