@@ -833,13 +833,12 @@ public abstract class AbstractFixJavadocMojo
 
     private void methodAdded( String[] split )
     {
-        String[] splits2;
         List<String> list = clirrNewMethods.get( split[2].trim() );
         if ( list == null )
         {
             list = new ArrayList<>();
         }
-        splits2 = StringUtils.split( split[3].trim(), "'" );
+        String[] splits2 = StringUtils.split( split[3].trim(), "'" );
         if ( splits2.length != 3 )
         {
             return;
