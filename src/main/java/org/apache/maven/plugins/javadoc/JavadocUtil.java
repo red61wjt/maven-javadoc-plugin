@@ -1831,7 +1831,7 @@ public class JavadocUtil
         builder.setUserAgent( "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)" );
 
         // Some server reject requests that do not have an Accept header
-        builder.setDefaultHeaders( Collections.singletonList( new BasicHeader( HttpHeaders.ACCEPT, "*/*" ) ) );
+        builder.setDefaultHeaders( Arrays.asList( new BasicHeader( HttpHeaders.ACCEPT, "*/*" ) ) );
 
         if ( settings != null && settings.getActiveProxy() != null )
         {
