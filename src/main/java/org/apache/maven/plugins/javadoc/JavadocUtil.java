@@ -650,34 +650,34 @@ public class JavadocUtil
             throw new IllegalArgumentException( "The memory could not be null." );
         }
 
-        Matcher m = PARSE_JAVADOC_MEMORY_PATTERN_0.matcher( memory );
-        if ( m.matches() )
+        Matcher m0 = PARSE_JAVADOC_MEMORY_PATTERN_0.matcher( memory );
+        if ( m0.matches() )
         {
-            return m.group( 1 ) + "m";
+            return m0.group( 1 ) + "m";
         }
 
-        m = PARSE_JAVADOC_MEMORY_PATTERN_1.matcher( memory );
-        if ( m.matches() )
+        Matcher m1 = PARSE_JAVADOC_MEMORY_PATTERN_1.matcher( memory );
+        if ( m1.matches() )
         {
-            return m.group( 1 ) + "k";
+            return m1.group( 1 ) + "k";
         }
 
-        m = PARSE_JAVADOC_MEMORY_PATTERN_2.matcher( memory );
-        if ( m.matches() )
+        Matcher m2 = PARSE_JAVADOC_MEMORY_PATTERN_2.matcher( memory );
+        if ( m2.matches() )
         {
-            return m.group( 1 ) + "m";
+            return m2.group( 1 ) + "m";
         }
 
-        m = PARSE_JAVADOC_MEMORY_PATTERN_3.matcher( memory );
-        if ( m.matches() )
+        Matcher m3 = PARSE_JAVADOC_MEMORY_PATTERN_3.matcher( memory );
+        if ( m3.matches() )
         {
-            return ( Integer.parseInt( m.group( 1 ) ) * 1024 ) + "m";
+            return ( Integer.parseInt( m3.group( 1 ) ) * 1024 ) + "m";
         }
 
-        m = PARSE_JAVADOC_MEMORY_PATTERN_4.matcher( memory );
-        if ( m.matches() )
+        Matcher m4 = PARSE_JAVADOC_MEMORY_PATTERN_4.matcher( memory );
+        if ( m4.matches() )
         {
-            return ( Integer.parseInt( m.group( 1 ) ) * 1024 * 1024 ) + "m";
+            return ( Integer.parseInt( m4.group( 1 ) ) * 1024 * 1024 ) + "m";
         }
 
         throw new IllegalArgumentException( "Could convert not to a memory size: " + memory );
