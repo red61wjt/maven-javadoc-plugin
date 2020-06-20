@@ -171,11 +171,11 @@ public class AggregatorJavadocReportTest
     private static String readFile( File file )
         throws IOException
     {
-        String strTmp;
         StringBuilder str = new StringBuilder( (int) file.length() );
 
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            while ( ( strTmp = in.readLine() ) != null ) {
+
+            for ( String strTmp ; ( strTmp = in.readLine() ) != null ; ) {
                 str.append( LINE_SEPARATOR );
                 str.append( strTmp );
             }
