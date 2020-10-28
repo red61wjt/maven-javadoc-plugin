@@ -30,7 +30,7 @@ under the License.
   </parent>
 
   <artifactId>maven-javadoc-plugin</artifactId>
-  <version>3.0.1</version>
+  <version>3.0.1-FIX-MJAVADOC-514</version>
   <packaging>maven-plugin</packaging>
 
   <name>Apache Maven Javadoc Plugin</name>
